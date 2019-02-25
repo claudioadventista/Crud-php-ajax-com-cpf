@@ -1,0 +1,21 @@
+<?php
+#Verifica se tem um cpf para pesquisa
+if((isset($_POST['cpf']))AND($_POST['cpf']<>' ')){ 
+
+    #Recebe o Cpf Postado
+    $cpfPostado = $_POST['cpf'];
+
+    #Conecta banco de dados 
+    $con = mysqli_connect("localhost", "root", "", "crud");
+    $sql = mysqli_query($con, "SELECT * FROM users WHERE cpf = '{$cpfPostado}'") or print mysql_error();
+
+    #Se o retorno for maior do que zero, diz que já existe um.
+    if(mysqli_num_rows($sql)>0)
+	  { 
+        echo json_encode(array('cpf' => ' CPF já cadastrado')); 
+	    echo json_encode(array('cpf' => '')); //Essa linha causa um erro que resolve o problema
+    }else{ 
+       echo json_encode(array('cpf' => '')); 
+	}	   
+}
+?>
