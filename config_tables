@@ -1,0 +1,14 @@
+<?php
+include('db.php');
+
+$linha = $_POST["linha"];
+$coluna = $_POST["coluna"];
+$ordem = $_POST["ordem"];
+ 	
+$sql = "UPDATE configuracao
+   SET linhas_por_pagina='$linha', coluna_inicial='$coluna', ordem_inicial='$ordem'
+   WHERE id= 1 "; 
+	if($connection->query($sql)===TRUE){
+	}
+	
+?>
